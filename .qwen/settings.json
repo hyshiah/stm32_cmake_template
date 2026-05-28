@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/rock/stm32/STM32CubeF1/Drivers/**)",
+      "Read(//home/rock/stm32/STM32CubeF1/**)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(cmake *)",
+      "Bash(rm *)",
+      "Bash(make *)",
+      "Bash(cd *)"
+    ]
+  },
+  "$version": 4
+}
