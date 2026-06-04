@@ -1,0 +1,16 @@
+# Build and generated files
+/build/
+*.o
+*.d
+*.elf
+*.bin
+*.hex
+*.map
+*.log
+*.ninja
+*.idx
+
+# Local editor / environment files
+.cache/
+.qwen/
+*.orig

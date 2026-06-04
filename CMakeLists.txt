@@ -33,6 +33,7 @@ set(HAL_SRC   "${CUBE_DIR}/Drivers/STM32F1xx_HAL_Driver/Src")
 # ── Include directories ──
 include_directories(
     ${CMAKE_SOURCE_DIR}/Core
+    ${CMAKE_SOURCE_DIR}/Core/hardware
     ${HAL_INC}
     ${CMSIS_INC}
     ${DEV_INC}
@@ -49,11 +50,14 @@ set(HAL_SOURCES
     ${HAL_SRC}/stm32f1xx_hal_gpio.c
     ${HAL_SRC}/stm32f1xx_hal_rcc.c
     ${HAL_SRC}/stm32f1xx_hal_flash.c
+    ${HAL_SRC}/stm32f1xx_hal_exti.c
 )
 
-# ── Main sources ──
+# ── Application sources ──
 set(APP_SOURCES
     ${CMAKE_SOURCE_DIR}/Core/main.c
+    ${CMAKE_SOURCE_DIR}/Core/stm32f1xx_it.c
+    ${CMAKE_SOURCE_DIR}/Core/hardware/App_Encoder.c
 )
 
 # ── Executable ──
