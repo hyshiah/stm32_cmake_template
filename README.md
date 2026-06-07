@@ -1,8 +1,8 @@
-# STM32F103C8T6 CMake 模板專案(for Raspberry) — 編碼器驅動
+# STM32F103C8T6 CMake 模板專案(for Raspberry) — 編碼器驅動 & UART2 Echo
 
 ## 概述
 
-以 **CMake** 建置的 STM32F103C8T6 (Blue Pill) 裸機專案，使用 STM32CubeF1 HAL 庫。展示雙正交編碼器（Generator / Motor）的中斷驅動實作，包含 LED 閃爍作為基礎驗證。
+以 **CMake** 建置的 STM32F103C8T6 (Blue Pill) 裸機專案，使用 STM32CubeF1 HAL 庫。展示雙正交編碼器（Generator / Motor）的中斷驅動實作，及 UART2（PA2/PA3）中斷方式非同步接收與 Echo 回送，包含 LED 閃爍作為基礎驗證。
 
 ## 硬體平台
 
@@ -24,6 +24,8 @@
 | Gen_Encoder B 相 | PB15 | 同步讀取判斷方向，無中斷 |
 | Motor_Encoder A 相 | PB3 | EXTI3 中斷，雙邊沿觸發（需關閉 JTAG） |
 | Motor_Encoder B 相 | PB4 | 同步讀取判斷方向，無中斷 |
+| USART2_TX | PA2 | 復用推挽輸出，115200 8N1 |
+| USART2_RX | PA3 | 輸入上拉，115200 8N1 |
 | LED | PC13 | 輸出推挽，500 ms 翻轉 |
 
 > PB3/PB4 預設為 JTAG 功能（JTDO / JTRST），初始化時透過 `__HAL_AFIO_REMAP_SWJ_NOJTAG()` 釋放為 GPIO。
@@ -40,7 +42,9 @@
 │   ├── system_stm32f1xx.c      # 系統初始化
 │   └── hardware/
 │       ├── App_Encoder.h        # 編碼器驅動標頭
-│       └── App_Encoder.c        # 編碼器實作 + EXTI ISR
+│       ├── App_Encoder.c        # 編碼器實作 + EXTI ISR
+│       ├── App_Uart2.h          # UART2 驅動標頭
+│       └── App_Uart2.c          # UART2 實作 + DMA + ISR + Echo
 ├── startup/
 │   └── startup_stm32f103xb.s   # 啟動向量表
 ├── linkers/
@@ -69,14 +73,39 @@
 
 方向計數值暫存在 `main.c` 定義的全域變數 `gen_counter` / `motor_counter` 中。
 
+### UART2 Echo 驅動 (`App_Uart2.c`)
+
+透過 USART2（PA2 TX, PA3 RX）實現中斷方式非同步接收與 Echo 回送：
+
+- **初始化順序**：GPIO → DMA1 → NVIC → HAL_UART_Init (115200 8N1) → 啟動中斷接收
+- **接收方式**：`HAL_UART_Receive_IT()` 單字節中斷接收
+- **Echo 機制**：`HAL_UART_RxCpltCallback()` 收到字節後以 `HAL_UART_Transmit_IT()` 送回，然後重新開啟接收
+
+#### 中斷流程
+
+```
+收到字節 → USART2_IRQHandler (硬體入口)
+               ↓
+         HAL_UART_IRQHandler (HAL 庫判斷中斷類型)
+               ↓
+         HAL_UART_RxCpltCallback (使用者回呼 → Echo)
+               ↓
+         重新開啟 Receive_IT 等待下個字節
+```
+
+#### DMA
+
+DMA1 通道 7（TX）及通道 6（RX）已初始化並連結至 USART2，`__HAL_LINKDMA` 於 `HAL_UART_Init()` 時一併配置 CR3 暫存器的 DMAT/DMAR 位元，為日後 DMA 收發做好準備。
+
 ### 中斷向量
 
 | IRQ | Handler | 用途 |
 |---|---|---|
 | EXTI3_IRQn | `EXTI3_IRQHandler` | Motor_Encoder PB3 中斷 |
 | EXTI15_10_IRQn | `EXTI15_10_IRQHandler` | Gen_Encoder PB14 中斷 |
+| USART2_IRQn | `USART2_IRQHandler` | USART2 RX 中斷（Echo） |
 
-ISR 實作在 `App_Encoder.c` 中，透過 linker 強定義覆蓋 startup 的 weak 預設值。
+ISR 實作在各自 `App_*.c` 中，透過 linker 強定義覆蓋 startup 的 weak 預設值。
 
 ## 建置需求
 
@@ -147,6 +176,8 @@ cmake --build build --target flash
 - CORTEX (NVIC/SysTick)
 - FLASH
 - EXTI
+- DMA
+- UART
 
 ### 鏈結腳本
 
