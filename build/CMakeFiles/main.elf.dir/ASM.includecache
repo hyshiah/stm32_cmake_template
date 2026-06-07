@@ -6,5 +6,5 @@
 
 #IncludeRegexTransform: 
 
-/home/rock/stm32/second/startup/startup_stm32f103xb.s
+/home/pi/stm32/stm32_cmake_template/startup/startup_stm32f103xb.s
 

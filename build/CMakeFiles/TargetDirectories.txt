@@ -1,6 +1,6 @@
-/home/rock/stm32/second/build/CMakeFiles/main.elf.dir
-/home/rock/stm32/second/build/CMakeFiles/flash.dir
-/home/rock/stm32/second/build/CMakeFiles/flash-bin.dir
-/home/rock/stm32/second/build/CMakeFiles/openocd.dir
-/home/rock/stm32/second/build/CMakeFiles/edit_cache.dir
-/home/rock/stm32/second/build/CMakeFiles/rebuild_cache.dir
+/home/pi/stm32/stm32_cmake_template/build/CMakeFiles/main.elf.dir
+/home/pi/stm32/stm32_cmake_template/build/CMakeFiles/flash.dir
+/home/pi/stm32/stm32_cmake_template/build/CMakeFiles/flash-bin.dir
+/home/pi/stm32/stm32_cmake_template/build/CMakeFiles/openocd.dir
+/home/pi/stm32/stm32_cmake_template/build/CMakeFiles/edit_cache.dir
+/home/pi/stm32/stm32_cmake_template/build/CMakeFiles/rebuild_cache.dir

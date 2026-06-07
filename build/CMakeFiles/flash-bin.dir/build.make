@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/rock/stm32/second
+CMAKE_SOURCE_DIR = /home/pi/stm32/stm32_cmake_template
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rock/stm32/second/build
+CMAKE_BINARY_DIR = /home/pi/stm32/stm32_cmake_template/build
 
 # Utility rule file for flash-bin.
 
@@ -67,8 +67,8 @@ include CMakeFiles/flash-bin.dir/compiler_depend.make
 include CMakeFiles/flash-bin.dir/progress.make
 
 CMakeFiles/flash-bin: main.bin
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Flashing main.bin via OpenOCD (ST-Link)..."
-	/usr/bin/openocd -f interface/stlink.cfg -f target/stm32f1x.cfg -c program\ /home/rock/stm32/second/build/main.bin\ 0x08000000\ verify\ reset\ exit
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Flashing main.bin via OpenOCD (ST-Link)..."
+	/usr/bin/openocd -f interface/stlink.cfg -f target/stm32f1x.cfg -c program\ /home/pi/stm32/stm32_cmake_template/build/main.bin\ 0x08000000\ verify\ reset\ exit
 
 flash-bin: CMakeFiles/flash-bin
 flash-bin: CMakeFiles/flash-bin.dir/build.make
@@ -83,6 +83,6 @@ CMakeFiles/flash-bin.dir/clean:
 .PHONY : CMakeFiles/flash-bin.dir/clean
 
 CMakeFiles/flash-bin.dir/depend:
-	cd /home/rock/stm32/second/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rock/stm32/second /home/rock/stm32/second /home/rock/stm32/second/build /home/rock/stm32/second/build /home/rock/stm32/second/build/CMakeFiles/flash-bin.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/stm32/stm32_cmake_template/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/stm32/stm32_cmake_template /home/pi/stm32/stm32_cmake_template /home/pi/stm32/stm32_cmake_template/build /home/pi/stm32/stm32_cmake_template/build /home/pi/stm32/stm32_cmake_template/build/CMakeFiles/flash-bin.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/flash-bin.dir/depend
 

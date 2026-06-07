@@ -1,42 +1,72 @@
 [
 {
-  "directory": "/home/rock/stm32/second/build",
-  "command": "arm-none-eabi-gcc -I/home/rock/stm32/second/Core -I/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -x assembler-with-cpp -g -g -o CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.o -c /home/rock/stm32/second/startup/startup_stm32f103xb.s",
-  "file": "/home/rock/stm32/second/startup/startup_stm32f103xb.s"
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -x assembler-with-cpp -g -o CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.o -c /home/pi/stm32/stm32_cmake_template/startup/startup_stm32f103xb.s",
+  "file": "/home/pi/stm32/stm32_cmake_template/startup/startup_stm32f103xb.s"
 },
 {
-  "directory": "/home/rock/stm32/second/build",
-  "command": "arm-none-eabi-gcc -I/home/rock/stm32/second/Core -I/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -g -o CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o -c /home/rock/stm32/second/Core/system_stm32f1xx.c",
-  "file": "/home/rock/stm32/second/Core/system_stm32f1xx.c"
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -o CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o -c /home/pi/stm32/stm32_cmake_template/Core/system_stm32f1xx.c",
+  "file": "/home/pi/stm32/stm32_cmake_template/Core/system_stm32f1xx.c"
 },
 {
-  "directory": "/home/rock/stm32/second/build",
-  "command": "arm-none-eabi-gcc -I/home/rock/stm32/second/Core -I/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -g -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o -c /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c",
-  "file": "/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c"
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c",
+  "file": "/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c"
 },
 {
-  "directory": "/home/rock/stm32/second/build",
-  "command": "arm-none-eabi-gcc -I/home/rock/stm32/second/Core -I/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -g -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o -c /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c",
-  "file": "/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c"
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c",
+  "file": "/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c"
 },
 {
-  "directory": "/home/rock/stm32/second/build",
-  "command": "arm-none-eabi-gcc -I/home/rock/stm32/second/Core -I/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -g -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o -c /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c",
-  "file": "/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c"
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c",
+  "file": "/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c"
 },
 {
-  "directory": "/home/rock/stm32/second/build",
-  "command": "arm-none-eabi-gcc -I/home/rock/stm32/second/Core -I/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -g -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o -c /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c",
-  "file": "/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c"
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c",
+  "file": "/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c"
 },
 {
-  "directory": "/home/rock/stm32/second/build",
-  "command": "arm-none-eabi-gcc -I/home/rock/stm32/second/Core -I/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -g -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o -c /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c",
-  "file": "/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c"
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c",
+  "file": "/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c"
 },
 {
-  "directory": "/home/rock/stm32/second/build",
-  "command": "arm-none-eabi-gcc -I/home/rock/stm32/second/Core -I/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -g -o CMakeFiles/main.elf.dir/Core/main.c.o -c /home/rock/stm32/second/Core/main.c",
-  "file": "/home/rock/stm32/second/Core/main.c"
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c",
+  "file": "/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c"
+},
+{
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c",
+  "file": "/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c"
+},
+{
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c",
+  "file": "/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c"
+},
+{
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -o CMakeFiles/main.elf.dir/Core/main.c.o -c /home/pi/stm32/stm32_cmake_template/Core/main.c",
+  "file": "/home/pi/stm32/stm32_cmake_template/Core/main.c"
+},
+{
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -o CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.o -c /home/pi/stm32/stm32_cmake_template/Core/stm32f1xx_it.c",
+  "file": "/home/pi/stm32/stm32_cmake_template/Core/stm32f1xx_it.c"
+},
+{
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -o CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.o -c /home/pi/stm32/stm32_cmake_template/Core/hardware/App_Encoder.c",
+  "file": "/home/pi/stm32/stm32_cmake_template/Core/hardware/App_Encoder.c"
+},
+{
+  "directory": "/home/pi/stm32/stm32_cmake_template/build",
+  "command": "arm-none-eabi-gcc  -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g -o CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.o -c /home/pi/stm32/stm32_cmake_template/Core/hardware/App_Uart2.c",
+  "file": "/home/pi/stm32/stm32_cmake_template/Core/hardware/App_Uart2.c"
 }
 ]

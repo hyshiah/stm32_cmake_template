@@ -16,7 +16,7 @@
 #include "stm32f1xx_hal.h"
 
 /* UART2 handle (defined in App_Uart2.c) */
-UART_HandleTypeDef huart2;
+extern UART_HandleTypeDef huart2;
 
 /* RX byte buffer for interrupt-based async receive */
 extern volatile uint8_t uart2_rx_byte;

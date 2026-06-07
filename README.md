@@ -36,7 +36,7 @@
 .
 ├── CMakeLists.txt              # 主建置腳本
 ├── Core/
-│   ├── main.c                  # 主程式：時鐘、GPIO、編碼器初始化
+│   ├── main.c                  # 主程式：時鐘、GPIO、編碼器、UART2 初始化 + printf 重定向
 │   ├── stm32f1xx_it.c          # 系統中斷 (SysTick)
 │   ├── stm32f1xx_hal_conf.h    # HAL 模組配置
 │   ├── system_stm32f1xx.c      # 系統初始化
@@ -96,6 +96,28 @@
 #### DMA
 
 DMA1 通道 7（TX）及通道 6（RX）已初始化並連結至 USART2，`__HAL_LINKDMA` 於 `HAL_UART_Init()` 時一併配置 CR3 暫存器的 DMAT/DMAR 位元，為日後 DMA 收發做好準備。
+
+### printf 重定向
+
+裸機上 `printf()` 預設沒有輸出通道，透過實作 `_write()` 系統呼叫將 stdout 導向 USART2：
+
+```c
+/* 在 main.c 中實作 */
+int _write(int file, char *ptr, int len)
+{
+    HAL_UART_Transmit(&huart2, (uint8_t*)ptr, len, HAL_MAX_DELAY);
+    return len;
+}
+```
+
+初始化順序需先呼叫 `Uart2_init()` 再使用 `printf()`。
+
+```
+main.c 初始化流程：
+HAL_Init → SystemClock_Config → GPIO_Init
+    → Gen_Encoder_Init → Motor_Encoder_init → Uart2_init
+    → while(1) { printf("..."); ... }
+```
 
 ### 中斷向量
 

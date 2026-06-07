@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/rock/stm32/second
+CMAKE_SOURCE_DIR = /home/pi/stm32/stm32_cmake_template
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rock/stm32/second/build
+CMAKE_BINARY_DIR = /home/pi/stm32/stm32_cmake_template/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.elf.dir/depend.make
@@ -70,141 +70,237 @@ include CMakeFiles/main.elf.dir/progress.make
 include CMakeFiles/main.elf.dir/flags.make
 
 CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.o: CMakeFiles/main.elf.dir/flags.make
-CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.o: /home/rock/stm32/second/startup/startup_stm32f103xb.s
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building ASM object CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.o"
-	arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -o CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.o -c /home/rock/stm32/second/startup/startup_stm32f103xb.s
+CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.o: /home/pi/stm32/stm32_cmake_template/startup/startup_stm32f103xb.s
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building ASM object CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.o"
+	arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -o CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.o -c /home/pi/stm32/stm32_cmake_template/startup/startup_stm32f103xb.s
 
 CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing ASM source to CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.i"
-	arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/rock/stm32/second/startup/startup_stm32f103xb.s > CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.i
+	arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/pi/stm32/stm32_cmake_template/startup/startup_stm32f103xb.s > CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.i
 
 CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling ASM source to assembly CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.s"
-	arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/rock/stm32/second/startup/startup_stm32f103xb.s -o CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.s
+	arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/pi/stm32/stm32_cmake_template/startup/startup_stm32f103xb.s -o CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.s
 
 CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o: CMakeFiles/main.elf.dir/flags.make
-CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o: /home/rock/stm32/second/Core/system_stm32f1xx.c
+CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o: /home/pi/stm32/stm32_cmake_template/Core/system_stm32f1xx.c
 CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o -MF CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o.d -o CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o -c /home/rock/stm32/second/Core/system_stm32f1xx.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o -MF CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o.d -o CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o -c /home/pi/stm32/stm32_cmake_template/Core/system_stm32f1xx.c
 
 CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.i"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rock/stm32/second/Core/system_stm32f1xx.c > CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.i
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/stm32/stm32_cmake_template/Core/system_stm32f1xx.c > CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.i
 
 CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.s"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rock/stm32/second/Core/system_stm32f1xx.c -o CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.s
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/stm32/stm32_cmake_template/Core/system_stm32f1xx.c -o CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.s
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o: CMakeFiles/main.elf.dir/flags.make
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o: /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o -MF CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o.d -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o -c /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o: CMakeFiles/main.elf.dir/flags.make
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o: /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o -MF CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o.d -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.i"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c > CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.i
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.i"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c > CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.i
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.s"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.s
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.s"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.s
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o: CMakeFiles/main.elf.dir/flags.make
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o: /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o -MF CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o.d -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o -c /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o: CMakeFiles/main.elf.dir/flags.make
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o: /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o -MF CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o.d -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.i"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c > CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.i
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.i"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c > CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.i
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.s"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.s
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.s"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.s
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o: CMakeFiles/main.elf.dir/flags.make
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o: /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o -MF CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o.d -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o -c /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o: CMakeFiles/main.elf.dir/flags.make
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o: /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o -MF CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o.d -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.i"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c > CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.i
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.i"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c > CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.i
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.s"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.s
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.s"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.s
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o: CMakeFiles/main.elf.dir/flags.make
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o: /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o -MF CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o.d -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o -c /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o: CMakeFiles/main.elf.dir/flags.make
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o: /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o -MF CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o.d -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.i"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c > CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.i
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.i"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c > CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.i
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.s"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.s
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.s"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.s
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o: CMakeFiles/main.elf.dir/flags.make
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o: /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o -MF CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o.d -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o -c /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o: CMakeFiles/main.elf.dir/flags.make
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o: /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o -MF CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o.d -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.i"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c > CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.i
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.i"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c > CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.i
 
-CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.s"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c -o CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.s
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.s"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.s
+
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.o: CMakeFiles/main.elf.dir/flags.make
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.o: /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.o"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.o -MF CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.o.d -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c
+
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.i"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c > CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.i
+
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.s"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.s
+
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.o: CMakeFiles/main.elf.dir/flags.make
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.o: /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.o"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.o -MF CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.o.d -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c
+
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.i"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c > CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.i
+
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.s"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.s
+
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.o: CMakeFiles/main.elf.dir/flags.make
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.o: /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.o"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.o -MF CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.o.d -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.o -c /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c
+
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.i"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c > CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.i
+
+CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.s"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c -o CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.s
 
 CMakeFiles/main.elf.dir/Core/main.c.o: CMakeFiles/main.elf.dir/flags.make
-CMakeFiles/main.elf.dir/Core/main.c.o: /home/rock/stm32/second/Core/main.c
+CMakeFiles/main.elf.dir/Core/main.c.o: /home/pi/stm32/stm32_cmake_template/Core/main.c
 CMakeFiles/main.elf.dir/Core/main.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/main.elf.dir/Core/main.c.o"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/Core/main.c.o -MF CMakeFiles/main.elf.dir/Core/main.c.o.d -o CMakeFiles/main.elf.dir/Core/main.c.o -c /home/rock/stm32/second/Core/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/main.elf.dir/Core/main.c.o"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/Core/main.c.o -MF CMakeFiles/main.elf.dir/Core/main.c.o.d -o CMakeFiles/main.elf.dir/Core/main.c.o -c /home/pi/stm32/stm32_cmake_template/Core/main.c
 
 CMakeFiles/main.elf.dir/Core/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/Core/main.c.i"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rock/stm32/second/Core/main.c > CMakeFiles/main.elf.dir/Core/main.c.i
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/stm32/stm32_cmake_template/Core/main.c > CMakeFiles/main.elf.dir/Core/main.c.i
 
 CMakeFiles/main.elf.dir/Core/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/Core/main.c.s"
-	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rock/stm32/second/Core/main.c -o CMakeFiles/main.elf.dir/Core/main.c.s
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/stm32/stm32_cmake_template/Core/main.c -o CMakeFiles/main.elf.dir/Core/main.c.s
+
+CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.o: CMakeFiles/main.elf.dir/flags.make
+CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.o: /home/pi/stm32/stm32_cmake_template/Core/stm32f1xx_it.c
+CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.o"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.o -MF CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.o.d -o CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.o -c /home/pi/stm32/stm32_cmake_template/Core/stm32f1xx_it.c
+
+CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.i"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/stm32/stm32_cmake_template/Core/stm32f1xx_it.c > CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.i
+
+CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.s"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/stm32/stm32_cmake_template/Core/stm32f1xx_it.c -o CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.s
+
+CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.o: CMakeFiles/main.elf.dir/flags.make
+CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.o: /home/pi/stm32/stm32_cmake_template/Core/hardware/App_Encoder.c
+CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.o"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.o -MF CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.o.d -o CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.o -c /home/pi/stm32/stm32_cmake_template/Core/hardware/App_Encoder.c
+
+CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.i"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/stm32/stm32_cmake_template/Core/hardware/App_Encoder.c > CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.i
+
+CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.s"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/stm32/stm32_cmake_template/Core/hardware/App_Encoder.c -o CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.s
+
+CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.o: CMakeFiles/main.elf.dir/flags.make
+CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.o: /home/pi/stm32/stm32_cmake_template/Core/hardware/App_Uart2.c
+CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.o: CMakeFiles/main.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.o"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.o -MF CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.o.d -o CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.o -c /home/pi/stm32/stm32_cmake_template/Core/hardware/App_Uart2.c
+
+CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.i"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/stm32/stm32_cmake_template/Core/hardware/App_Uart2.c > CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.i
+
+CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.s"
+	arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/stm32/stm32_cmake_template/Core/hardware/App_Uart2.c -o CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.s
 
 # Object files for target main.elf
 main_elf_OBJECTS = \
 "CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.o" \
 "CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o" \
-"CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o" \
-"CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o" \
-"CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o" \
-"CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o" \
-"CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o" \
-"CMakeFiles/main.elf.dir/Core/main.c.o"
+"CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o" \
+"CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o" \
+"CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o" \
+"CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o" \
+"CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o" \
+"CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.o" \
+"CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.o" \
+"CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.o" \
+"CMakeFiles/main.elf.dir/Core/main.c.o" \
+"CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.o" \
+"CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.o" \
+"CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.o"
 
 # External object files for target main.elf
 main_elf_EXTERNAL_OBJECTS =
 
 main.elf: CMakeFiles/main.elf.dir/startup/startup_stm32f103xb.s.o
 main.elf: CMakeFiles/main.elf.dir/Core/system_stm32f1xx.c.o
-main.elf: CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o
-main.elf: CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o
-main.elf: CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o
-main.elf: CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o
-main.elf: CMakeFiles/main.elf.dir/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o
+main.elf: CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.o
+main.elf: CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.o
+main.elf: CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.o
+main.elf: CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.o
+main.elf: CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.o
+main.elf: CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.o
+main.elf: CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.o
+main.elf: CMakeFiles/main.elf.dir/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.o
 main.elf: CMakeFiles/main.elf.dir/Core/main.c.o
+main.elf: CMakeFiles/main.elf.dir/Core/stm32f1xx_it.c.o
+main.elf: CMakeFiles/main.elf.dir/Core/hardware/App_Encoder.c.o
+main.elf: CMakeFiles/main.elf.dir/Core/hardware/App_Uart2.c.o
 main.elf: CMakeFiles/main.elf.dir/build.make
 main.elf: CMakeFiles/main.elf.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking C executable main.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking C executable main.elf"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.elf.dir/link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating binary and hex files"
 	arm-none-eabi-objcopy -O binary main.elf main.bin
@@ -220,6 +316,6 @@ CMakeFiles/main.elf.dir/clean:
 .PHONY : CMakeFiles/main.elf.dir/clean
 
 CMakeFiles/main.elf.dir/depend:
-	cd /home/rock/stm32/second/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rock/stm32/second /home/rock/stm32/second /home/rock/stm32/second/build /home/rock/stm32/second/build /home/rock/stm32/second/build/CMakeFiles/main.elf.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/stm32/stm32_cmake_template/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/stm32/stm32_cmake_template /home/pi/stm32/stm32_cmake_template /home/pi/stm32/stm32_cmake_template/build /home/pi/stm32/stm32_cmake_template/build /home/pi/stm32/stm32_cmake_template/build/CMakeFiles/main.elf.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/main.elf.dir/depend
 

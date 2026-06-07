@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/rock/stm32/second
+CMAKE_SOURCE_DIR = /home/pi/stm32/stm32_cmake_template
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rock/stm32/second/build
+CMAKE_BINARY_DIR = /home/pi/stm32/stm32_cmake_template/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -84,14 +84,14 @@ clean: CMakeFiles/openocd.dir/clean
 CMakeFiles/main.elf.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.elf.dir/build.make CMakeFiles/main.elf.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.elf.dir/build.make CMakeFiles/main.elf.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=3,4,5,6,7,8,9,10,11 "Built target main.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Built target main.elf"
 .PHONY : CMakeFiles/main.elf.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.elf.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rock/stm32/second/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/stm32/stm32_cmake_template/build/CMakeFiles 15
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/main.elf.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rock/stm32/second/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/stm32/stm32_cmake_template/build/CMakeFiles 0
 .PHONY : CMakeFiles/main.elf.dir/rule
 
 # Convenience name for target.
@@ -110,14 +110,14 @@ CMakeFiles/main.elf.dir/clean:
 CMakeFiles/flash.dir/all: CMakeFiles/main.elf.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/flash.dir/build.make CMakeFiles/flash.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/flash.dir/build.make CMakeFiles/flash.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=1 "Built target flash"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=1 "Built target flash"
 .PHONY : CMakeFiles/flash.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/flash.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rock/stm32/second/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/stm32/stm32_cmake_template/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/flash.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rock/stm32/second/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/stm32/stm32_cmake_template/build/CMakeFiles 0
 .PHONY : CMakeFiles/flash.dir/rule
 
 # Convenience name for target.
@@ -136,14 +136,14 @@ CMakeFiles/flash.dir/clean:
 CMakeFiles/flash-bin.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/flash-bin.dir/build.make CMakeFiles/flash-bin.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/flash-bin.dir/build.make CMakeFiles/flash-bin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=2 "Built target flash-bin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=2 "Built target flash-bin"
 .PHONY : CMakeFiles/flash-bin.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/flash-bin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rock/stm32/second/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/stm32/stm32_cmake_template/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/flash-bin.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rock/stm32/second/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/stm32/stm32_cmake_template/build/CMakeFiles 0
 .PHONY : CMakeFiles/flash-bin.dir/rule
 
 # Convenience name for target.
@@ -162,14 +162,14 @@ CMakeFiles/flash-bin.dir/clean:
 CMakeFiles/openocd.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/openocd.dir/build.make CMakeFiles/openocd.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/openocd.dir/build.make CMakeFiles/openocd.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=12 "Built target openocd"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=18 "Built target openocd"
 .PHONY : CMakeFiles/openocd.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/openocd.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rock/stm32/second/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/stm32/stm32_cmake_template/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/openocd.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rock/stm32/second/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/stm32/stm32_cmake_template/build/CMakeFiles 0
 .PHONY : CMakeFiles/openocd.dir/rule
 
 # Convenience name for target.

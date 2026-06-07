@@ -5,6 +5,10 @@
 
 #include "stm32f1xx_hal.h"
 #include "App_Encoder.h"
+#include "App_Uart2.h"
+
+#include <stdio.h>
+#include <sys/stat.h>   // for _write retarget
 
 volatile int32_t gen_counter = 0; // 全局變量，記錄 Gen_Encoder 的計數
 volatile int32_t motor_counter = 0; // 全局變量，記錄 Motor_Encoder
@@ -54,9 +58,18 @@ int main(void) {
     GPIO_Init();
     Gen_Encoder_Init();   // 初始化 AB 相編碼器
     Motor_Encoder_init(); // 初始化 Motor 編碼器
+    Uart2_init();         // 初始化 USART2（printf 輸出通道）
 
     while (1) {
+        printf("hello world\r\n");
         HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
         HAL_Delay(500);
     }
+}
+
+/* 重定向 printf → USART2 */
+int _write(int file, char *ptr, int len) {
+    (void)file;
+    HAL_UART_Transmit(&huart2, (uint8_t*)ptr, len, HAL_MAX_DELAY);
+    return len;
 }

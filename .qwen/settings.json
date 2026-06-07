@@ -8,7 +8,9 @@
       "Bash(cmake *)",
       "Bash(rm *)",
       "Bash(make *)",
-      "Bash(cd *)"
+      "Bash(cd *)",
+      "Agent(Explore)",
+      "Bash(git add *)"
     ]
   },
   "$version": 4

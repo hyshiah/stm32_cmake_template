@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/rock/stm32/second
+CMAKE_SOURCE_DIR = /home/pi/stm32/stm32_cmake_template
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rock/stm32/second/build
+CMAKE_BINARY_DIR = /home/pi/stm32/stm32_cmake_template/build
 
 # Utility rule file for openocd.
 
@@ -67,7 +67,7 @@ include CMakeFiles/openocd.dir/compiler_depend.make
 include CMakeFiles/openocd.dir/progress.make
 
 CMakeFiles/openocd:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/rock/stm32/second/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Starting OpenOCD server (connect GDB with: arm-none-eabi-gdb -ex 'target extended-remote :3333' main.elf)"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/pi/stm32/stm32_cmake_template/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Starting OpenOCD server (connect GDB with: arm-none-eabi-gdb -ex 'target extended-remote :3333' main.elf)"
 	/usr/bin/openocd -f interface/stlink.cfg -f target/stm32f1x.cfg
 
 openocd: CMakeFiles/openocd
@@ -83,6 +83,6 @@ CMakeFiles/openocd.dir/clean:
 .PHONY : CMakeFiles/openocd.dir/clean
 
 CMakeFiles/openocd.dir/depend:
-	cd /home/rock/stm32/second/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rock/stm32/second /home/rock/stm32/second /home/rock/stm32/second/build /home/rock/stm32/second/build /home/rock/stm32/second/build/CMakeFiles/openocd.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/stm32/stm32_cmake_template/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/stm32/stm32_cmake_template /home/pi/stm32/stm32_cmake_template /home/pi/stm32/stm32_cmake_template/build /home/pi/stm32/stm32_cmake_template/build /home/pi/stm32/stm32_cmake_template/build/CMakeFiles/openocd.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/openocd.dir/depend
 

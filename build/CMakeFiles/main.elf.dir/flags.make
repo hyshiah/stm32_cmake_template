@@ -5,13 +5,13 @@
 # compile C with arm-none-eabi-gcc
 ASM_DEFINES = 
 
-ASM_INCLUDES = -I/home/rock/stm32/second/Core -I/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include
+ASM_INCLUDES = -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include
 
 ASM_FLAGS = -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -x assembler-with-cpp -g
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/rock/stm32/second/Core -I/home/rock/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/rock/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include
+C_INCLUDES = -I/home/pi/stm32/stm32_cmake_template/Core -I/home/pi/stm32/stm32_cmake_template/Core/hardware -I/home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Core/Include -I/home/pi/stm32/STM32CubeF1/Drivers/CMSIS/Device/ST/STM32F1xx/Include
 
 C_FLAGS = -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -DSTM32F103xB -Wall -Wextra -Wno-unused-parameter -Os -ffunction-sections -fdata-sections -g
 
