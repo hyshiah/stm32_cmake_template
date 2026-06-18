@@ -6,13 +6,19 @@
 #include "stm32f1xx_hal.h"
 #include "App_Encoder.h"
 #include "App_Uart2.h"
+#include "App_Pwm.h"
+#include "stm32f1xx_hal_conf.h"
 
 #include <stdio.h>
 #include <sys/stat.h>   // for _write retarget
 
 volatile int32_t gen_counter = 0; // 全局變量，記錄 Gen_Encoder 的計數
 volatile int32_t motor_counter = 0; // 全局變量，記錄 Motor_Encoder
+// 要发送的3个通道数据：CH0(电压), CH1(角度), CH2(温度)
+float data[3] = {3.14, 1.20, 25.60};
 
+// 关键帧尾：0x00, 0x00, 0x80, 0x7f
+uint8_t tail[4] = {0x00, 0x00, 0x80, 0x7f};
 
 static void SystemClock_Config(void) {
     RCC_OscInitTypeDef RCC_OscInitStruct = {0};
@@ -58,12 +64,21 @@ int main(void) {
     GPIO_Init();
     Gen_Encoder_Init();   // 初始化 AB 相編碼器
     Motor_Encoder_init(); // 初始化 Motor 編碼器
-    Uart2_init();         // 初始化 USART2（printf 輸出通道）
+    App_Uart2_init();         // 初始化 USART2（printf 輸出通道）
+    App_Pwm_Init();           // 初始化 PWM（PA8=TIM1_CH1, PB6=TIM4_CH1, 1kHz）
+
+    /* 設定初始佔空比：PA8=50%, PB6=25% */
+    App_Pwm1_SetDuty(500);
+    App_Pwm4_SetDuty(250);
 
     while (1) {
-        printf("hello world\r\n");
+        //printf("hello world\r\n");
+        //HAL_UART_Transmit(&huart2, (uint8_t*)"Hello", 5, 100);
+        // 通过串口发送 (以HAL库为例)
+        HAL_UART_Transmit(&huart2, (uint8_t*)data, sizeof(data), 0xFFFF);
+        HAL_UART_Transmit(&huart2, tail, 4, 0xFFFF);
         HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-        HAL_Delay(500);
+        HAL_Delay(10);
     }
 }
 

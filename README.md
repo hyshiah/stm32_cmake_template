@@ -1,8 +1,8 @@
-# STM32F103C8T6 CMake 模板專案(for Raspberry) — 編碼器驅動 & UART2 Echo
+# STM32F103C8T6 CMake 模板專案(for Raspberry) — 編碼器驅動 & UART2 Echo & ADC2 定時觸發
 
 ## 概述
 
-以 **CMake** 建置的 STM32F103C8T6 (Blue Pill) 裸機專案，使用 STM32CubeF1 HAL 庫。展示雙正交編碼器（Generator / Motor）的中斷驅動實作，及 UART2（PA2/PA3）中斷方式非同步接收與 Echo 回送，包含 LED 閃爍作為基礎驗證。
+以 **CMake** 建置的 STM32F103C8T6 (Blue Pill) 裸機專案，使用 STM32CubeF1 HAL 庫。展示雙正交編碼器（Generator / Motor）的中斷驅動實作、UART2（PA2/PA3）中斷方式非同步接收與 Echo 回送、及 ADC2 定時器硬體觸發轉換（TIM3 每 1 ms 啟動一次 ADC，中斷自動更新結果），包含 LED 閃爍作為基礎驗證。
 
 ## 硬體平台
 
@@ -26,6 +26,9 @@
 | Motor_Encoder B 相 | PB4 | 同步讀取判斷方向，無中斷 |
 | USART2_TX | PA2 | 復用推挽輸出，115200 8N1 |
 | USART2_RX | PA3 | 輸入上拉，115200 8N1 |
+| ADC2_IN5 | PA5 | 類比輸入，TIM3 每 1 ms 觸發轉換 |
+| TIM1_CH1 (PWM) | PA8 | 復用推挽輸出，1 kHz PWM，分辨率 1000 |
+| TIM4_CH1 (PWM) | PB6 | 復用推挽輸出，1 kHz PWM，分辨率 1000 |
 | LED | PC13 | 輸出推挽，500 ms 翻轉 |
 
 > PB3/PB4 預設為 JTAG 功能（JTDO / JTRST），初始化時透過 `__HAL_AFIO_REMAP_SWJ_NOJTAG()` 釋放為 GPIO。
@@ -43,8 +46,12 @@
 │   └── hardware/
 │       ├── App_Encoder.h        # 編碼器驅動標頭
 │       ├── App_Encoder.c        # 編碼器實作 + EXTI ISR
+│       ├── App_Adc.h            # ADC2 驅動標頭 (TIM3 硬體觸發)
+│       ├── App_Adc.c            # ADC2 實作 + TIM3 1ms + ISR + 回呼
 │       ├── App_Uart2.h          # UART2 驅動標頭
-│       └── App_Uart2.c          # UART2 實作 + DMA + ISR + Echo
+│       ├── App_Uart2.c          # UART2 實作 + DMA + ISR + Echo
+│       ├── App_Pwm.h            # PWM 驅動標頭
+│       └── App_Pwm.c            # PWM 實作（TIM1_CH1 PA8, TIM4_CH1 PB6）
 ├── startup/
 │   └── startup_stm32f103xb.s   # 啟動向量表
 ├── linkers/
@@ -97,6 +104,83 @@
 
 DMA1 通道 7（TX）及通道 6（RX）已初始化並連結至 USART2，`__HAL_LINKDMA` 於 `HAL_UART_Init()` 時一併配置 CR3 暫存器的 DMAT/DMAR 位元，為日後 DMA 收發做好準備。
 
+### ADC2 定時觸發驅動 (`App_Adc.c`)
+
+透過 ADC2（PA5）實現外部電壓採樣，由 TIM3 硬體每 1 ms 自動觸發轉換，轉換完成後透過中斷將結果寫入 `adc2_value`。
+
+#### 硬體觸發鏈
+
+```
+HAL_TIM_Base_Start(&htim3)      使用者啟動 TIM3
+       ↓
+TIM3 每 1 ms 更新事件 (UEV)
+       ↓
+TIM3_TRGO (硬體訊號) ──→ ADC2 外觸發輸入
+       ↓
+ADC2 單次轉換完成 → NVIC
+       ↓
+ADC1_2_IRQHandler → HAL_ADC_IRQHandler → HAL_ADC_ConvCpltCallback
+       ↓
+adc2_value 自動更新
+```
+
+#### 初始化順序
+
+```c
+App_Adc2_Init();                 // 配置 ADC2 + TIM3，啟用外觸發模式
+HAL_TIM_Base_Start(&htim3);      // 啟動 TIM3 → 開始每 1ms 轉換
+```
+
+- ADC2 時鐘：PCLK2 / 6 = 12 MHz
+- 解析度：12-bit（0–4095）
+- 外觸發來源：`ADC_EXTERNALTRIGCONV_T3_TRGO`（TIM3 TRGO）
+- TIM3 配置：PSC = 71（72 MHz → 1 MHz），ARR = 999（1 ms 週期），MMS = Update
+
+### PWM 輸出驅動 (`App_Pwm.c`)
+
+兩個獨立 PWM 通道輸出，使用高階定時器 TIM1 與通用定時器 TIM4：
+
+| 通道 | 腳位 | 定時器 | 時脈源 | 頻率 | 分辨率 |
+|---|---|---|---|---|---|
+| CH1 | PA8 | TIM1 (高階) | APB2 = 72 MHz | 1 kHz | 1000 |
+| CH1 | PB6 | TIM4 (通用) | APB1×2 = 72 MHz | 1 kHz | 1000 |
+
+#### 時序計算
+
+```
+定時器時脈 = 72 MHz
+PSC       = 71    → 計數器時脈 = 72 MHz / (71+1) = 1 MHz
+ARR       = 999   → PWM 頻率    = 1 MHz / (999+1) = 1 kHz
+分辨率    = ARR+1 = 1000 階（0–1000 對應 0%–100% 佔空比）
+```
+
+#### 初始化順序
+
+```c
+App_Pwm_Init();
+// 內部自動完成 GPIO、TIM 初始化並啟動 PWM 輸出
+```
+
+#### 設定佔空比
+
+```c
+App_Pwm1_SetDuty(500);   // PA8 輸出 50% 佔空比
+App_Pwm4_SetDuty(250);   // PB6 輸出 25% 佔空比
+```
+
+佔空比參數範圍 **0–1000**，線性對應 0.0%–100.0%。
+
+#### 讀取轉換結果
+
+`adc2_value` 為 `volatile` 全域變數，由 ISR 自動更新，主迴圈隨時讀取：
+
+```c
+uint16_t raw   = adc2_value;
+float    volts = raw * 3.3f / 4095.0f;
+```
+
+> **注意**：ADC2 在 STM32F103 上無專用 DMA 通道，因此不使用 DMA，僅以中斷方式完成轉換。
+
 ### printf 重定向
 
 裸機上 `printf()` 預設沒有輸出通道，透過實作 `_write()` 系統呼叫將 stdout 導向 USART2：
@@ -110,12 +194,13 @@ int _write(int file, char *ptr, int len)
 }
 ```
 
-初始化順序需先呼叫 `Uart2_init()` 再使用 `printf()`。
+初始化順序需先呼叫 `App_Uart2_init()` 再使用 `printf()`。
 
 ```
 main.c 初始化流程：
 HAL_Init → SystemClock_Config → GPIO_Init
-    → Gen_Encoder_Init → Motor_Encoder_init → Uart2_init
+    → Gen_Encoder_Init → Motor_Encoder_init → App_Uart2_init → App_Adc2_Init → App_Pwm_Init
+    → HAL_TIM_Base_Start(&htim3)
     → while(1) { printf("..."); ... }
 ```
 
@@ -126,6 +211,7 @@ HAL_Init → SystemClock_Config → GPIO_Init
 | EXTI3_IRQn | `EXTI3_IRQHandler` | Motor_Encoder PB3 中斷 |
 | EXTI15_10_IRQn | `EXTI15_10_IRQHandler` | Gen_Encoder PB14 中斷 |
 | USART2_IRQn | `USART2_IRQHandler` | USART2 RX 中斷（Echo） |
+| ADC1_2_IRQn | `ADC1_2_IRQHandler` | ADC2 轉換完成中斷（TIM3 觸發） |
 
 ISR 實作在各自 `App_*.c` 中，透過 linker 強定義覆蓋 startup 的 weak 預設值。
 
@@ -199,6 +285,8 @@ cmake --build build --target flash
 - FLASH
 - EXTI
 - DMA
+- ADC
+- TIM
 - UART
 
 ### 鏈結腳本
