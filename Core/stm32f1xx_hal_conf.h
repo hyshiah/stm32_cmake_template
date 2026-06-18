@@ -25,6 +25,8 @@ extern "C" {
 #define HAL_EXTI_MODULE_ENABLED
 #define HAL_DMA_MODULE_ENABLED
 #define HAL_UART_MODULE_ENABLED
+#define HAL_TIM_MODULE_ENABLED
+
 
 /* ===== Oscillator Values ===== */
 #define HSE_VALUE          8000000U   /* 8 MHz external crystal on Blue Pill */
@@ -47,6 +49,7 @@ extern "C" {
 #include "stm32f1xx_hal_flash.h"
 #include "stm32f1xx_hal_exti.h"
 #include "stm32f1xx_hal_dma.h"
+#include "stm32f1xx_hal_tim.h"
 #include "stm32f1xx_hal_uart.h"
 
 /* ===== Assert macro ===== */

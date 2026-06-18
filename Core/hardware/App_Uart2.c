@@ -71,7 +71,7 @@ static void Uart2_NVIC_Init(void)
 }
 
 /* ── UART2 初始化（公開接口） ── */
-void Uart2_init(void)
+void App_Uart2_init(void)
 {
     Uart2_GPIO_Init();
     Uart2_DMA_Init();
@@ -89,7 +89,14 @@ void Uart2_init(void)
 
     Uart2_NVIC_Init();
 
-    /* 啟動中斷方式非同步接收（1 byte） */
+    /* 啟動中斷方式非同步接收（1 byte） 
+    * 设置一个接收缓冲区指针（把数据存到哪）。
+    * 设置接收长度（收多少个字节）。
+    * 开启 STM32 的串口接收中断寄存器。
+    * 核心关键点。你期望接收的固定字节数。只有当硬件足足收满了这个数量的字节，才会触发上面的 HAL_UART_RxCptCallback 回调函数。
+    * HAL_UART_Receive_DMA
+    */
+
     HAL_UART_Receive_IT(&huart2, (uint8_t*)&uart2_rx_byte, 1);
 }
 

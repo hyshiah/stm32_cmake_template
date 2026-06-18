@@ -21,6 +21,6 @@ extern UART_HandleTypeDef huart2;
 /* RX byte buffer for interrupt-based async receive */
 extern volatile uint8_t uart2_rx_byte;
 
-void Uart2_init(void);
+void App_Uart2_init(void);
 
 #endif

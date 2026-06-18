@@ -24,7 +24,7 @@ set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/linkers/STM32F103XB_FLASH.ld")
 #set(CMAKE_EXE_LINKER_FLAGS "${MCU_FLAGS} -T${LINKER_SCRIPT} -Wl,--gc-sections -Wl,-Map=${CMAKE_BINARY_DIR}/output.map -specs=nosys.specs -specs=nano.specs  -u _printf_float")
 set(CMAKE_EXE_LINKER_FLAGS "${MCU_FLAGS} -T${LINKER_SCRIPT} -Wl,--gc-sections -Wl,-Map=${CMAKE_BINARY_DIR}/output.map -specs=nano.specs -specs=nosys.specs -u _printf_float")
 # ── Paths to STM32CubeF1 ──
-set(CUBE_DIR "/home/rock/stm32/STM32CubeF1")
+set(CUBE_DIR "/home/pi/stm32/STM32CubeF1")
 set(HAL_INC   "${CUBE_DIR}/Drivers/STM32F1xx_HAL_Driver/Inc")
 set(CMSIS_INC "${CUBE_DIR}/Drivers/CMSIS/Core/Include")
 set(DEV_INC   "${CUBE_DIR}/Drivers/CMSIS/Device/ST/STM32F1xx/Include")
@@ -64,7 +64,7 @@ set(APP_SOURCES
     ${CMAKE_SOURCE_DIR}/Core/stm32f1xx_it.c
     ${CMAKE_SOURCE_DIR}/Core/hardware/App_Encoder.c
     ${CMAKE_SOURCE_DIR}/Core/hardware/App_Uart2.c
-    ${CMAKE_SOURCE_DIR}/Core/hardware/App_Adc.c
+    ##${CMAKE_SOURCE_DIR}/Core/hardware/App_Adc.c
     ${CMAKE_SOURCE_DIR}/Core/hardware/App_Pwm.c
 )
 
