@@ -12,5 +12,4 @@
 
 # Local editor / environment files
 .cache/
-.qwen/
 *.orig
