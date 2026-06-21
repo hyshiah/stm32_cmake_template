@@ -26,6 +26,7 @@ extern "C" {
 #define HAL_DMA_MODULE_ENABLED
 #define HAL_UART_MODULE_ENABLED
 #define HAL_TIM_MODULE_ENABLED
+#define HAL_ADC_MODULE_ENABLED
 
 
 /* ===== Oscillator Values ===== */
@@ -50,6 +51,7 @@ extern "C" {
 #include "stm32f1xx_hal_exti.h"
 #include "stm32f1xx_hal_dma.h"
 #include "stm32f1xx_hal_tim.h"
+#include "stm32f1xx_hal_adc.h"
 #include "stm32f1xx_hal_uart.h"
 
 /* ===== Assert macro ===== */

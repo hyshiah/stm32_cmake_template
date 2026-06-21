@@ -10,6 +10,8 @@ void Gen_Encoder_Init(void) {
     // 初始化 AB 相編碼器
     GPIO_InitTypeDef GPIO_InitStruct = {0};
 
+    // 啟用 AFIO 時鐘（HAL_EXTI_SetConfigLine 寫 AFIO->EXTICR 需要）
+    __HAL_RCC_AFIO_CLK_ENABLE();
     // 啟用 GPIOB 時鐘
     __HAL_RCC_GPIOB_CLK_ENABLE();
 
@@ -35,12 +37,7 @@ void EXTI_Init_gen(void) {
     HAL_EXTI_SetConfigLine(&hexti, &config);
 
     /* 只須A相中斷即可，B相用來判斷方向
-    // 配置 EXTI15 (PB15, Gen_Encoder B 相) — 雙邊沿中斷
-    config.Line    = EXTI_LINE_15;
-    config.Mode    = EXTI_MODE_INTERRUPT;
-    config.Trigger = EXTI_TRIGGER_RISING_FALLING;
-    config.GPIOSel = EXTI_GPIOB;
-    HAL_EXTI_SetConfigLine(&hexti, &config);
+
     */
 }
 

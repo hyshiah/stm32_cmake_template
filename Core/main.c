@@ -9,8 +9,10 @@
 #include "App_Pwm.h"
 #include "App_Adc.h"
 #include "stm32f1xx_hal_conf.h"
-
 #include <stdio.h>
+#include <stdint.h>
+#include <inttypes.h> // Include this for the macros
+
 #include <sys/stat.h>   // for _write retarget
 
 volatile int32_t gen_counter = 0; // 全局變量，記錄 Gen_Encoder 的計數
@@ -75,7 +77,8 @@ int main(void) {
     App_Pwm4_SetDuty(250);
 
     while (1) {
-        printf("hello world %d\r\n", pb0_voltage);
+        //printf("hello world %d\r\n", pb0_voltage);
+        printf("Generator count: %" PRId32 "\r\n", gen_counter);
         //HAL_UART_Transmit(&huart2, (uint8_t*)"Hello", 5, 100);
         // 通过串口发送 (以HAL库为例 上位機用)
         //HAL_UART_Transmit(&huart2, (uint8_t*)data, sizeof(data), 0xFFFF);

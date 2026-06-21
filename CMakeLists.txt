@@ -55,6 +55,8 @@ set(HAL_SOURCES
     ${HAL_SRC}/stm32f1xx_hal_adc.c
     ${HAL_SRC}/stm32f1xx_hal_adc_ex.c
     ${HAL_SRC}/stm32f1xx_hal_tim.c
+    ${HAL_SRC}/stm32f1xx_hal_tim_ex.c
+    ${HAL_SRC}/stm32f1xx_hal_rcc_ex.c
     ${HAL_SRC}/stm32f1xx_hal_uart.c
 )
 
@@ -64,7 +66,7 @@ set(APP_SOURCES
     ${CMAKE_SOURCE_DIR}/Core/stm32f1xx_it.c
     ${CMAKE_SOURCE_DIR}/Core/hardware/App_Encoder.c
     ${CMAKE_SOURCE_DIR}/Core/hardware/App_Uart2.c
-    ##${CMAKE_SOURCE_DIR}/Core/hardware/App_Adc.c
+    ${CMAKE_SOURCE_DIR}/Core/hardware/App_Adc.c
     ${CMAKE_SOURCE_DIR}/Core/hardware/App_Pwm.c
 )
 

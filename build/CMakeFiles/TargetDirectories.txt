@@ -1,6 +1,0 @@
-/home/pi/stm32/stm32_cmake_template/build/CMakeFiles/main.elf.dir
-/home/pi/stm32/stm32_cmake_template/build/CMakeFiles/flash.dir
-/home/pi/stm32/stm32_cmake_template/build/CMakeFiles/flash-bin.dir
-/home/pi/stm32/stm32_cmake_template/build/CMakeFiles/openocd.dir
-/home/pi/stm32/stm32_cmake_template/build/CMakeFiles/edit_cache.dir
-/home/pi/stm32/stm32_cmake_template/build/CMakeFiles/rebuild_cache.dir

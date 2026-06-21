@@ -304,3 +304,6 @@ cmake --build build --target openocd
 # 另開終端，用 GDB 連線
 arm-none-eabi-gdb -ex "target extended-remote :3333" build/main.elf
 ```
+# uart 
+minicom -D /dev/ttyUSB0 -b 115200
+按 CTRL-A Z 说明特殊键

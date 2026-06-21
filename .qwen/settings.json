@@ -10,7 +10,10 @@
       "Bash(make *)",
       "Bash(cd *)",
       "Agent(Explore)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Read(//home/pi/stm32/STM32CubeF1/Drivers/STM32F1xx_HAL_Driver/Inc/**)",
+      "Read(//home/pi/stm32/STM32CubeF1/**)",
+      "Bash(grep *)"
     ]
   },
   "$version": 4
