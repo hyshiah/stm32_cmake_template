@@ -8,6 +8,7 @@
 #include "App_Uart2.h"
 #include "App_Pwm.h"
 #include "App_Adc.h"
+#include "App_det_speed.h" // 包含速度检测模块的头文件
 #include "stm32f1xx_hal_conf.h"
 #include <stdio.h>
 #include <stdint.h>
@@ -17,6 +18,7 @@
 
 volatile int32_t gen_counter = 0; // 全局變量，記錄 Gen_Encoder 的計數
 volatile int32_t motor_counter = 0; // 全局變量，記錄 Motor_Encoder
+volatile uint32_t time_diff = 0; // 全局變量，記錄速度對應的時間差
 
 // 要发送的3个通道数据：CH0(电压), CH1(角度), CH2(温度)
 float data[3] = {3.14, 1.20, 25.60};
@@ -62,6 +64,8 @@ static void GPIO_Init(void) {
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 }
 
+void det_speed(void); // 前置声明速度检测函数
+
 int main(void) {
     HAL_Init();
     SystemClock_Config();
@@ -70,7 +74,8 @@ int main(void) {
     Motor_Encoder_init(); // 初始化 Motor 編碼器
     App_Uart2_init();         // 初始化 USART2（printf 輸出通道）
     App_Pwm_Init();           // 初始化 PWM（PA8=TIM1_CH1, PB6=TIM4_CH1, 1kHz）
-    App_Adc_Init();           // 初始化 ADC1（PB0, TIM1 TRGO 觸發, EOC 中斷）
+    App_Adc_Init();           // 初始化 ADC1（PB0, TIM1 TRGO 觸發, EOC 中斷）    
+    App_Speed_Init();         // 初始化速度检测模块
 
     /* 設定初始佔空比：PA8=50%, PB6=25% */
     App_Pwm1_SetDuty(500);
@@ -79,6 +84,7 @@ int main(void) {
     while (1) {
         //printf("hello world %d\r\n", pb0_voltage);
         printf("Generator count: %" PRId32 "\r\n", gen_counter);
+        det_speed(); // 调用速度检测函数，输出时间差和频率
         //HAL_UART_Transmit(&huart2, (uint8_t*)"Hello", 5, 100);
         // 通过串口发送 (以HAL库为例 上位機用)
         //HAL_UART_Transmit(&huart2, (uint8_t*)data, sizeof(data), 0xFFFF);
@@ -93,4 +99,23 @@ int _write(int file, char *ptr, int len) {
     (void)file;
     HAL_UART_Transmit(&huart2, (uint8_t*)ptr, len, HAL_MAX_DELAY);
     return len;
+}
+
+void det_speed(void) {
+    // 获取当前速度对应的时间差
+    time_diff = App_Speed_Get();
+    if (time_diff == 0xFFFFFFFF) {
+            // 缓冲区未准备好
+        printf("Speed module not ready yet!\r\n");
+    } else if (time_diff == 0) {
+        // 理论上不应该为 0，除非在同一个 Tick 内触发了两次中断
+        printf("Time diff is 0! Too fast!\r\n");
+    } else {
+        // 计算频率：1000ms / time_diff = Hz
+        // 例如：time_diff = 100ms，则频率 = 10Hz
+        uint32_t frequency_hz = 1000 / time_diff;
+        printf("Time diff: %" PRId32 " ms, Frequency: % " PRId32 "Hz\r\n", 
+                time_diff, frequency_hz);
+    }
+ 
 }

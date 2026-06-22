@@ -2,7 +2,7 @@
 name: Add peripheral driver to STM32 HAL CMake project
 description: 为不使用 CubeMX 的 STM32 裸机 CMake 项目添加新的外设驱动（UART、SPI、I2C、TIM 等）
 source: auto-skill
-extracted_at: '2026-06-19T05:46:14.588Z'
+extracted_at: '2026-06-22T07:41:57.054Z'
 ---
 
 # 为 STM32 HAL CMake 项目添加外设驱动
@@ -138,6 +138,30 @@ cmake .. && make -j$(nproc)
 ```
 
 检查是否有未定义的引用 → 通常意味着漏加了 `HAL_SOURCES` 中的 `.c` 文件。
+
+### ⚠️ 常见陷阱：修改 CMakeLists.txt 后忘记重新 cmake
+
+如果只是修改 `CMakeLists.txt`（如添加新 `.c` 文件到 `APP_SOURCES`）然后直接 `make`，**不会触发重新配置**，构建系统依然使用旧规则——新文件不会被编译和链接。
+
+此时 linker 会报看似吓人的错误：
+
+```
+(.text.det_speed+0x2): undefined reference to `App_Speed_Get'
+(.text.det_speed+0x2): dangerous relocation: unsupported relocation
+(App_Speed_Get): Unknown destination type (ARM/Thumb) in ...main.c.o
+```
+
+**"dangerous relocation" + "Unknown destination type"** 是 GCC 15+ 工具链在遇到**未定义符号**时的表述方式——linker 无法判断目标函数的 ARM/Thumb 类型，因为符号根本不存在。初学者容易被"relocation"等术语误导去查 linker script 或编译选项，实际上问题很简单：**新加的 `.c` 文件没有被编译进项目**。
+
+✅ **正确做法**：修改 `CMakeLists.txt` 后重新运行 cmake：
+
+```bash
+cd build
+cmake ..            # 重新配置（生成新规则）
+make -j$(nproc)     # 重新编译 + 链接
+```
+
+不需要每次 `rm -rf build`，除非你想彻底清理。`cmake ..` 会增量更新构建规则。
 
 ## 9. 从远程 Pull 后的编译失败诊断
 

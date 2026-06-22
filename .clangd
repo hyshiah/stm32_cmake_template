@@ -1,5 +1,5 @@
 CompileFlags:
   Add: [
-    "-isystem", "/home/pi/stm32/arm-gnu-toolchain-15.2.rel1-aarch64-arm-none-eabi/arm-none-eabi/include",
-    "-isystem", "/home/pi/stm32/arm-gnu-toolchain-15.2.rel1-aarch64-arm-none-eabi/lib/gcc/arm-none-eabi/15.2.1/include"
+    "-isystem", "/home/rock/stm32/arm-gnu-toolchain-15.2.rel1-aarch64-arm-none-eabi/arm-none-eabi/include",
+    "-isystem", "/home/rock/stm32/arm-gnu-toolchain-15.2.rel1-aarch64-arm-none-eabi/lib/gcc/arm-none-eabi/15.2.1/include"
   ]

@@ -2,6 +2,7 @@
 
 #include "App_Encoder.h"
 #include "stm32f1xx_hal.h"
+#include "App_det_speed.h" // 包含速度检测模块的头文件
 
 extern volatile int32_t gen_counter; // 全局變量，記錄 Gen_Encoder 的計數
 extern volatile int32_t motor_counter; // 全局變量，記錄 Motor_Encoder
@@ -72,6 +73,7 @@ void EXTI15_10_IRQHandler(void)
         // 逆時針
         gen_counter--; // 假設 counter 是全局變量
     }
+    App_Speed_Set(); // 每次 A 相 變化都記錄時間戳，供速度檢測使用
   }
 }
 void Motor_Encoder_init(void) {
