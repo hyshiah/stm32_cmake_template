@@ -1,5 +1,5 @@
 #include "App_det_speed.h"
-#include "stm32f1xx_hal.h"
+#include "App_tim2_freeCount.h"
 
 // 环形缓冲区：存储 Tick 值
 static uint32_t ring_buffer[SPEED_RING_BUFFER_SIZE];
@@ -41,9 +41,9 @@ void App_Speed_Init(void) {
  * @note  不需要禁用中断，因为操作是原子的
  */
 void App_Speed_Set(void) {
-    // 读取当前的 Systick 值
-    uint32_t current_tick = HAL_GetTick();
-    
+    // 读取 TIM2 計數值（10 µs/tick）
+    uint32_t current_tick = App_Tim2_GetTick();
+
     // 写入缓冲区
     ring_buffer[write_index] = current_tick;
     
@@ -78,8 +78,8 @@ uint32_t App_Speed_Get(void) {
         return 0xFFFFFFFF;  // 无效值
     }
     
-    // 获取当前 Tick
-    uint32_t current_tick = HAL_GetTick();
+    // 获取当前 TIM2 計數值（10 µs/tick）
+    uint32_t current_tick = App_Tim2_GetTick();
     
     // 计算"最后一条有效记录"的索引
     // 因为 write_index 指向的是下一个要写入的位置，
@@ -90,15 +90,31 @@ uint32_t App_Speed_Get(void) {
     } else {
         last_index = write_index - 1;
     }
+    uint8_t second_last_index;
+    if (last_index == 0) {
+        second_last_index = SPEED_RING_BUFFER_SIZE - 1;
+    } else {
+        second_last_index = last_index - 1;
+    }
     
     // 读取最后一条记录的值
     uint32_t last_tick = ring_buffer[last_index];
-    
+    uint32_t second_last_tick = ring_buffer[second_last_index];
     // 计算时间差（处理 Systick 溢出回绕的情况）
     // 无符号减法在 C 语言中定义良好，即使回绕也能正确计算差值
-    uint32_t time_diff = current_tick - last_tick;
     
-    return time_diff;
+    uint32_t time_diff = current_tick - last_tick;
+    uint32_t interval = last_tick - second_last_tick;
+    if (time_diff > interval) {
+        return time_diff; // 返回时间差
+    } else {
+        return interval; // 返回两条记录之间的间隔
+        // 这里选择返回两条记录之间的间隔，表示可能有中断
+        // 如果当前时间与最后一条记录的差值大于两条记录之间的间隔，
+        // 说明可能有中断丢失或其他异常情况
+        // 可以选择返回一个特殊值，或者继续返回 time_diff
+        // 这里选择继续返回 time_diff
+    }
 }
 
 /**

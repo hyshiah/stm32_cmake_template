@@ -69,6 +69,7 @@ set(APP_SOURCES
     ${CMAKE_SOURCE_DIR}/Core/hardware/App_Adc.c
     ${CMAKE_SOURCE_DIR}/Core/hardware/App_Pwm.c
     ${CMAKE_SOURCE_DIR}/Core/hardware/App_det_speed.c
+    ${CMAKE_SOURCE_DIR}/Core/hardware/App_tim2_freeCount.c
 )
 
 # ── Executable ──
