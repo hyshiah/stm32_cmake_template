@@ -34,6 +34,11 @@ static void App_Pwm4_GPIO_Init(void)
 }
 
 /* ── PWM 初始化（公開接口） ── */
+/**
+ * @brief 使用 Tim1 Tim4 生成 pwm ，tim4 供 ADC1 注入組觸發使用
+ * @note  TIM1_CH1 (PA8) 用於發電機控制， TIM4_CH1 (PB6) 用於電機控制
+ * @note  TIM4 主模式 TRGO 設定為 Update 事件，頻率 1 kHz，供 ADC1 注入組觸發使用
+ */
 void App_Pwm_Init(void)
 {
     /* ===== TIM1_CH1 (PA8) ===== */

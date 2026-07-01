@@ -9,7 +9,8 @@
 #include "App_Pwm.h"
 #include "App_Adc.h"
 #include "App_det_speed.h" // 包含速度检测模块的头文件
-#include "App_tim2_freeCount.h"
+#include "App_Control_gen.h" // 包含控制模块的头文件
+
 #include "stm32f1xx_hal_conf.h"
 #include <stdio.h>
 #include <stdint.h>
@@ -17,7 +18,7 @@
 #include <string.h>    // for memset
 
 #include <sys/stat.h>   // for _write retarget
-#define ENCODER_PULSE_PER_REV 22.0f  // 每圈脉冲数（根据实际情况修改）
+
 volatile int32_t gen_counter = 0; // 全局變量，記錄 Gen_Encoder 的計數
 volatile int32_t motor_counter = 0; // 全局變量，記錄 Motor_Encoder
 volatile uint32_t time_diff = 0; // 全局變量，記錄速度對應的時間差
@@ -118,33 +119,37 @@ static void GPIO_Init(void) {
 }
 
 void det_speed(void); // 前置声明速度检测函数
-
+// 發送函數
+debug_control_gen_t debug_data;
+void VOFA_SendData(void) {
+    HAL_UART_Transmit(&huart2, (uint8_t*)&debug_data, sizeof(debug_control_gen_t), 100);
+    HAL_UART_Transmit(&huart2, tail, 4, 100);
+}
 int main(void) {
     HAL_Init();
     SystemClock_Config();
     GPIO_Init();
-    Gen_Encoder_Init();   // 初始化 AB 相編碼器
-    Motor_Encoder_init(); // 初始化 Motor 編碼器
+    
     App_Uart2_init();         // 初始化 USART2（printf 輸出通道）
-    App_Pwm_Init();           // 初始化 PWM（PA8=TIM1_CH1, PB6=TIM4_CH1, 1kHz）
-    App_Adc_Init();           // 初始化 ADC1（PB0, TIM1 TRGO 觸發, EOC 中斷）
-    App_Tim2_FreeCount_Init(); // 初始化 TIM2 自由計數器（10 µs/tick，供速度檢測用）
-    App_Speed_Init();         // 初始化速度检测模块
-
+    App_Control_Gen_Init();
     /* 設定初始佔空比：PA8=50%, PB6=25% */
-    App_Pwm1_SetDuty(50);
-    App_Pwm4_SetDuty(250);
+    App_Pwm1_SetDuty(0);
+    App_Pwm4_SetDuty(0);
 
     while (1) {
+        debug_data = App_Control_Gen_Proc(); // 调用控制处理函数
         //printf("hello world %d\r\n", pb0_voltage);
-        printf("Generator count: %" PRId32 "\r\n", gen_counter);
-        det_speed(); // 调用速度检测函数，输出时间差和频率
+        //printf("hello world %d\r\n", duty_cycle);
+        //printf("Generator count: %" PRId32 "\r\n", gen_counter);
+        //det_speed(); // 调用速度检测函数，输出时间差和频率
         //HAL_UART_Transmit(&huart2, (uint8_t*)"Hello", 5, 100);
+        debug_data.speed_omega = 100.0f; // Example speed value
+        debug_data.control_output = 50.0f; // Example control output value
         // 通过串口发送 (以HAL库为例 上位機用)
-        //HAL_UART_Transmit(&huart2, (uint8_t*)data, sizeof(data), 0xFFFF);
-        //HAL_UART_Transmit(&huart2, tail, 4, 0xFFFF);
+        VOFA_SendData();
+        
         HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-        HAL_Delay(500);
+        HAL_Delay(10);
     }
 }
 

@@ -3,10 +3,14 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-
+#include <stdio.h>
+#include <stdint.h>
+#include <inttypes.h> // Include this for the macros
+#include <string.h>    // for memset
 // 环形缓冲区大小
 #define SPEED_RING_BUFFER_SIZE 3
-
+#define ENCODER_PULSE_PER_REV 22.0f  // 每圈脉冲数（根据实际情况修改）
+extern void float_to_string(float value, uint8_t decimals, char* output);
 // 初始化速度检测模块
 void App_Speed_Init(void);
 
@@ -25,4 +29,9 @@ uint8_t App_Speed_GetIndex(void);
 // 检查缓冲区是否已满（调试用）
 bool App_Speed_IsBufferReady(void);
 
+// 返回速度检测结果（徑度/每秒）
+float App_Det_Speed(void);
+
+// 打印速度检测结果（调试用）
+void App_Print_Det_Speed(void);
 #endif /* __APP_DET_SPEED_H */

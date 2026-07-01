@@ -1,6 +1,8 @@
 #include "App_det_speed.h"
 #include "App_tim2_freeCount.h"
 
+static volatile uint32_t time_diff = 0;
+
 // 环形缓冲区：存储 Tick 值
 static uint32_t ring_buffer[SPEED_RING_BUFFER_SIZE];
 
@@ -22,9 +24,11 @@ static volatile bool is_updating = false;
 // 为了确保中断不会被打断，set() 中不做复杂操作
 
 /**
- * @brief 初始化速度检测模块
+ * @brief 初始化速度检测模块，為一環型緩衝區，紀錄最近三次的 Tim2 值
+ * 用來計算兩次中斷之間的時間差，單位為 Tick（10 µs/tick）
  */
 void App_Speed_Init(void) {
+    App_Tim2_FreeCount_Init(); // 初始化 TIM2 自由计数器（10 µs/tick，32-bit free-running）
     // 清空缓冲区
     for (uint8_t i = 0; i < SPEED_RING_BUFFER_SIZE; i++) {
         ring_buffer[i] = 0;
@@ -129,4 +133,49 @@ uint8_t App_Speed_GetIndex(void) {
  */
 bool App_Speed_IsBufferReady(void) {
     return buffer_ready;
+}
+
+void App_Print_Det_Speed(void) {
+    char buffer[80];
+    // 获取当前速度对应的时间差
+    time_diff = App_Speed_Get();
+    if (time_diff == 0xFFFFFFFF) {
+            // 缓冲区未准备好
+        printf("Speed module not ready yet!\r\n");
+    } else if (time_diff == 0) {
+        // 理论上不应该为 0，除非在同一个 Tick 内触发了两次中断
+        printf("Time diff is 0! Too fast!\r\n");
+    } else {
+        // 計算頻率：100000 * 10µs / time_diff = Hz
+        // 例如：time_diff = 10000（= 100ms），則頻率 = 10Hz
+        float freq = 100000.0f / time_diff;               // 原始頻率 (Hz)
+        float freq_corrected = freq / ENCODER_PULSE_PER_REV;  // 实际物理频率
+        float rpm = freq_corrected * 60.0f;               // 转速 (RPM)
+        // 格式化成字符串
+        // 手动转换浮点数
+        char freq_str[16];
+        float_to_string(freq_corrected, 2, freq_str);  // 保留2位小数
+        char rpm_str[16];
+        float_to_string(rpm, 1, rpm_str);   // 保留1位小数
+        snprintf(buffer, sizeof(buffer),
+                 "dt=%" PRId32 " *10us  freq=%s Hz  RPM=%s\r\n",
+                 time_diff, freq_str, rpm_str);
+        // 发送到串口
+        printf("%s", buffer);                 
+    } 
+}
+
+float App_Det_Speed(void) {
+    time_diff = App_Speed_Get();
+    if (time_diff == 0xFFFFFFFF) {
+        return -1.0f;  // 缓冲区未准备好
+    } else if (time_diff == 0) {
+        return -2.0f;  // 理论上不应该为 0，除非在同一个 Tick 内触发了两次中断
+    } else {
+        // 計算頻率：100000 * 10µs / time_diff = Hz
+        // 例如：time_diff = 10000（= 100ms），則頻率 = 10Hz
+        float freq = 100000.0f / time_diff;               // 原始頻率 (Hz)
+        float freq_corrected = freq / ENCODER_PULSE_PER_REV;  // 实际物理频率
+        return freq_corrected * 3.1415 * 2.0f ;  // 返回实际物理频率 (Hz)                        
+    } 
 }

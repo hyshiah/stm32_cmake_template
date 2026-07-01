@@ -34,6 +34,7 @@ set(HAL_SRC   "${CUBE_DIR}/Drivers/STM32F1xx_HAL_Driver/Src")
 include_directories(
     ${CMAKE_SOURCE_DIR}/Core
     ${CMAKE_SOURCE_DIR}/Core/hardware
+    ${CMAKE_SOURCE_DIR}/Core/Software
     ${HAL_INC}
     ${CMSIS_INC}
     ${DEV_INC}
@@ -70,6 +71,8 @@ set(APP_SOURCES
     ${CMAKE_SOURCE_DIR}/Core/hardware/App_Pwm.c
     ${CMAKE_SOURCE_DIR}/Core/hardware/App_det_speed.c
     ${CMAKE_SOURCE_DIR}/Core/hardware/App_tim2_freeCount.c
+    ${CMAKE_SOURCE_DIR}/Core/hardware/pid.c
+    ${CMAKE_SOURCE_DIR}/Core/Software/App_Control_gen.c
 )
 
 # ── Executable ──
