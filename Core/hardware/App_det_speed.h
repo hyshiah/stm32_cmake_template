@@ -8,8 +8,16 @@
 #include <inttypes.h> // Include this for the macros
 #include <string.h>    // for memset
 // 环形缓冲区大小
+
+typedef struct {
+    uint8_t last_index;
+    uint8_t second_last_index; // PID controller for speed
+    uint32_t last_tick;
+    uint32_t second_last_tick;
+} debug_index_t;
+
 #define SPEED_RING_BUFFER_SIZE 3
-#define ENCODER_PULSE_PER_REV 22.0f  // 每圈脉冲数（根据实际情况修改）
+#define ENCODER_PULSE_PER_REV 26.0f  // 雙邊沿觸發 13 線
 extern void float_to_string(float value, uint8_t decimals, char* output);
 // 初始化速度检测模块
 void App_Speed_Init(void);
@@ -18,10 +26,6 @@ void App_Speed_Init(void);
 // 此函数应在中断上下文中调用，执行时间极短
 void App_Speed_Set(void);
 
-// 主循环调用：获取当前速度对应的时间差（单位：毫秒）
-// 返回值：当前 Tick 减去缓冲区中最后一个有效记录
-//         如果缓冲区无效，返回 0xFFFFFFFF
-uint32_t App_Speed_Get(void);
 
 // 获取缓冲区当前写入索引（调试用）
 uint8_t App_Speed_GetIndex(void);
@@ -29,9 +33,12 @@ uint8_t App_Speed_GetIndex(void);
 // 检查缓冲区是否已满（调试用）
 bool App_Speed_IsBufferReady(void);
 
-// 返回速度检测结果（徑度/每秒）
-float App_Det_Speed(void);
+// 返回检测结果（tick /per 22.5 degree）
+uint32_t App_Det_Ticks(void);
+
+//返回速度检测结果（rad/second）
+float App_Tick_to_speed(void);
 
 // 打印速度检测结果（调试用）
-void App_Print_Det_Speed(void);
+debug_index_t calculate_index(void);
 #endif /* __APP_DET_SPEED_H */

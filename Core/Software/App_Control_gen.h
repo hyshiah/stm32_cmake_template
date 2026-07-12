@@ -11,6 +11,9 @@
 typedef struct {
     float speed_omega;
     float control_output; // PID controller for speed
+    float kp_output;
+    float ki_output;
+    float kd_output;
 } debug_control_gen_t;
 
 void App_Control_Gen_Init(void);

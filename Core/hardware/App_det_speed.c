@@ -37,6 +37,7 @@ void App_Speed_Init(void) {
     write_count = 0;
     buffer_ready = false;
     is_updating = false;
+
 }
 
 /**
@@ -68,26 +69,7 @@ void App_Speed_Set(void) {
     }
 }
 
-/**
- * @brief 主循环调用：获取时间差
- * @return 当前时间 - 缓冲区最后一个有效记录
- *         如果缓冲区未准备好，返回 0xFFFFFFFF
- * 
- * @note 这里需要计算"最后一条"记录，实际上是当前写入索引的前一个位置
- *       因为 set() 每次写入后索引都会指向下一个位置
- */
-uint32_t App_Speed_Get(void) {
-    // 检查缓冲区是否已准备好
-    if (!buffer_ready) {
-        return 0xFFFFFFFF;  // 无效值
-    }
-    
-    // 获取当前 TIM2 計數值（10 µs/tick）
-    uint32_t current_tick = App_Tim2_GetTick();
-    
-    // 计算"最后一条有效记录"的索引
-    // 因为 write_index 指向的是下一个要写入的位置，
-    // 所以最后一条记录在 write_index - 1（循环考虑）
+debug_index_t calculate_index(void){
     uint8_t last_index;
     if (write_index == 0) {
         last_index = SPEED_RING_BUFFER_SIZE - 1;
@@ -100,26 +82,51 @@ uint32_t App_Speed_Get(void) {
     } else {
         second_last_index = last_index - 1;
     }
+    debug_index_t index;
+    index.last_index = last_index;
+    index.second_last_index = second_last_index;
+    index.last_tick = ring_buffer[index.last_index];
+    index.second_last_tick = ring_buffer[index.second_last_index];
+    return index;
+}
+
+/**
+ * @brief 主循环调用：获取时间差
+ * @return 当前时间 - 缓冲区最后一个有效记录 tick
+ *         如果缓冲区未准备好，返回 0xFFFFFFFF
+ * 
+ * @note 这里需要计算"最后一条"记录，实际上是当前写入索引的前一个位置
+ *       因为 set() 每次写入后索引都会指向下一个位置
+ */
+uint32_t App_Det_Ticks(void) {
+    // 检查缓冲区是否已准备好
+    if (!buffer_ready) {
+        return 0xFFFFFFFF;  // 无效值
+    }
     
+    // 获取当前 TIM2 計數值（10 µs/tick）
+    //uint32_t current_tick = App_Tim2_GetTick();
+    
+    // 计算"最后一条有效记录"的索引
+    // 因为 write_index 指向的是下一个要写入的位置，
+    // 所以最后一条记录在 write_index - 1（循环考虑）
+    debug_index_t index = calculate_index();   
     // 读取最后一条记录的值
-    uint32_t last_tick = ring_buffer[last_index];
-    uint32_t second_last_tick = ring_buffer[second_last_index];
+    uint32_t last_tick = index.last_tick;
+    uint32_t second_last_tick = index.second_last_tick;
     // 计算时间差（处理 Systick 溢出回绕的情况）
     // 无符号减法在 C 语言中定义良好，即使回绕也能正确计算差值
-    
-    uint32_t time_diff = current_tick - last_tick;
-    uint32_t interval = last_tick - second_last_tick;
-    if (time_diff > interval) {
-        return time_diff; // 返回时间差
-    } else {
-        return interval; // 返回两条记录之间的间隔
-        // 这里选择返回两条记录之间的间隔，表示可能有中断
-        // 如果当前时间与最后一条记录的差值大于两条记录之间的间隔，
-        // 说明可能有中断丢失或其他异常情况
-        // 可以选择返回一个特殊值，或者继续返回 time_diff
-        // 这里选择继续返回 time_diff
-    }
+    uint32_t interval = 0;
+    uint32_t temp = 0;
+    if(last_tick >= second_last_tick){
+        interval = last_tick - second_last_tick;
+    }else{
+        temp = (UINT32_MAX -second_last_tick);
+        interval = last_tick + temp;
+    }   
+    return interval;
 }
+
 
 /**
  * @brief 获取当前写入索引（调试用）
@@ -135,38 +142,9 @@ bool App_Speed_IsBufferReady(void) {
     return buffer_ready;
 }
 
-void App_Print_Det_Speed(void) {
-    char buffer[80];
-    // 获取当前速度对应的时间差
-    time_diff = App_Speed_Get();
-    if (time_diff == 0xFFFFFFFF) {
-            // 缓冲区未准备好
-        printf("Speed module not ready yet!\r\n");
-    } else if (time_diff == 0) {
-        // 理论上不应该为 0，除非在同一个 Tick 内触发了两次中断
-        printf("Time diff is 0! Too fast!\r\n");
-    } else {
-        // 計算頻率：100000 * 10µs / time_diff = Hz
-        // 例如：time_diff = 10000（= 100ms），則頻率 = 10Hz
-        float freq = 100000.0f / time_diff;               // 原始頻率 (Hz)
-        float freq_corrected = freq / ENCODER_PULSE_PER_REV;  // 实际物理频率
-        float rpm = freq_corrected * 60.0f;               // 转速 (RPM)
-        // 格式化成字符串
-        // 手动转换浮点数
-        char freq_str[16];
-        float_to_string(freq_corrected, 2, freq_str);  // 保留2位小数
-        char rpm_str[16];
-        float_to_string(rpm, 1, rpm_str);   // 保留1位小数
-        snprintf(buffer, sizeof(buffer),
-                 "dt=%" PRId32 " *10us  freq=%s Hz  RPM=%s\r\n",
-                 time_diff, freq_str, rpm_str);
-        // 发送到串口
-        printf("%s", buffer);                 
-    } 
-}
 
-float App_Det_Speed(void) {
-    time_diff = App_Speed_Get();
+float App_Tick_to_speed(void) {
+    time_diff = App_Det_Ticks();
     if (time_diff == 0xFFFFFFFF) {
         return -1.0f;  // 缓冲区未准备好
     } else if (time_diff == 0) {
@@ -174,8 +152,9 @@ float App_Det_Speed(void) {
     } else {
         // 計算頻率：100000 * 10µs / time_diff = Hz
         // 例如：time_diff = 10000（= 100ms），則頻率 = 10Hz
-        float freq = 100000.0f / time_diff;               // 原始頻率 (Hz)
-        float freq_corrected = freq / ENCODER_PULSE_PER_REV;  // 实际物理频率
-        return freq_corrected * 3.1415 * 2.0f ;  // 返回实际物理频率 (Hz)                        
+        float ticks_rev = time_diff * ENCODER_PULSE_PER_REV; //(10us/rev)              // 原始頻率 (Hz)
+        float freq = 10000 /ticks_rev;  // 实际物理频率
+        return freq * 3.1415 * 2.0f ;  // 返回实际物理频率 (rad/sec)                        
     } 
 }
+

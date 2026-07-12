@@ -36,18 +36,19 @@ static void App_Pwm4_GPIO_Init(void)
 /* ── PWM 初始化（公開接口） ── */
 /**
  * @brief 使用 Tim1 Tim4 生成 pwm ，tim4 供 ADC1 注入組觸發使用
- * @note  TIM1_CH1 (PA8) 用於發電機控制， TIM4_CH1 (PB6) 用於電機控制
+ * @note  TIM1_CH1 (PA8) 用於發電機控制：10 kHz，分辨率 1200
+ * @note  TIM4_CH1 (PB6) 用於電機控制與 ADC1 注入組觸發：1 kHz，分辨率 1000
  * @note  TIM4 主模式 TRGO 設定為 Update 事件，頻率 1 kHz，供 ADC1 注入組觸發使用
  */
 void App_Pwm_Init(void)
 {
-    /* ===== TIM1_CH1 (PA8) ===== */
+    /* ===== TIM1_CH1 (PA8) — 10 kHz, 分辨率 1200 ===== */
     App_Pwm1_GPIO_Init();
 
     htim1.Instance               = TIM1;
-    htim1.Init.Prescaler         = 71;        // 72 MHz / 72 = 1 MHz
+    htim1.Init.Prescaler         = 5;         // 72 MHz / 6 = 12 MHz
     htim1.Init.CounterMode       = TIM_COUNTERMODE_UP;
-    htim1.Init.Period            = 999;       // 1 MHz / 1000 = 1 kHz
+    htim1.Init.Period            = 1199;      // 12 MHz / 1200 = 10 kHz
     htim1.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
     htim1.Init.RepetitionCounter = 0;
     htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
@@ -87,10 +88,10 @@ void App_Pwm_Init(void)
     HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig);
 }
 
-/* ── 設定 TIM1_CH1 佔空比 (0–1000) ── */
+/* ── 設定 TIM1_CH1 佔空比 (0–1200) ── */
 void App_Pwm1_SetDuty(uint16_t duty)
 {
-    if (duty > 1000) duty = 1000;
+    if (duty > 1200) duty = 1200;
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, duty);
 }
 

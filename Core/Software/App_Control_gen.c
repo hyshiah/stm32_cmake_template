@@ -1,4 +1,5 @@
 #include "App_Control_gen.h"
+#include "App_det_speed.h"
 
 static PID_TypeDef pid_speed;
 
@@ -20,19 +21,20 @@ void App_Control_Gen_Init(void) {
 debug_control_gen_t App_Control_Gen_Proc(void) {
     debug_control_gen_t debug_data;
     // Get the current speed (feedback) from the encoder
-    float omega = App_Det_Speed(); // Replace with actual speed calculation
+    float omega = App_Tick_to_speed(); // Replace with actual speed calculation
 
     // Compute the control output using the PID controller
     // The PID output unit is voltage according define of transfer function. 
     float co = PID_Compute(&pid_speed, omega);
-    debug_data.speed_omega = omega;
-    debug_data.control_output = co;
+    
     // Apply the control output to the PWM duty cycle 0~ 999
     if (co < 0.0f) {
         co = 0.0f; // Ensure duty cycle is not negative
     } else if (co > 750.0f) {
         co = 750.0f; // Ensure duty cycle does not exceed 750
     }
+    debug_data.speed_omega = omega;
+    debug_data.control_output = co;
     uint16_t duty_cycle = (uint16_t) co; // Convert to uint16_t for PWM function
     App_Pwm1_SetDuty(duty_cycle); // Set PWM duty cycle for generator control
     return debug_data;

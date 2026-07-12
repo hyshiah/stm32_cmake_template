@@ -117,10 +117,13 @@ static void GPIO_Init(void) {
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 }
+void print_index();
 
-void det_speed(void); // 前置声明速度检测函数
 // 發送函數
 debug_control_gen_t debug_data;
+
+void serial_studio_sendData(void);
+
 void VOFA_SendData(void) {
     HAL_UART_Transmit(&huart2, (uint8_t*)&debug_data, sizeof(debug_control_gen_t), 100);
     HAL_UART_Transmit(&huart2, tail, 4, 100);
@@ -133,23 +136,23 @@ int main(void) {
     App_Uart2_init();         // 初始化 USART2（printf 輸出通道）
     App_Control_Gen_Init();
     /* 設定初始佔空比：PA8=50%, PB6=25% */
-    App_Pwm1_SetDuty(0);
+    App_Pwm1_SetDuty(250);
     App_Pwm4_SetDuty(0);
 
     while (1) {
-        debug_data = App_Control_Gen_Proc(); // 调用控制处理函数
+        //debug_data = App_Control_Gen_Proc(); // 调用控制处理函数
         //printf("hello world %d\r\n", pb0_voltage);
         //printf("hello world %d\r\n", duty_cycle);
         //printf("Generator count: %" PRId32 "\r\n", gen_counter);
-        //det_speed(); // 调用速度检测函数，输出时间差和频率
         //HAL_UART_Transmit(&huart2, (uint8_t*)"Hello", 5, 100);
         debug_data.speed_omega = 100.0f; // Example speed value
         debug_data.control_output = 50.0f; // Example control output value
         // 通过串口发送 (以HAL库为例 上位機用)
-        VOFA_SendData();
-        
+        //VOFA_SendData();
+        //print_index();
+        serial_studio_sendData();
         HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-        HAL_Delay(10);
+        HAL_Delay(500);
     }
 }
 
@@ -160,32 +163,31 @@ int _write(int file, char *ptr, int len) {
     return len;
 }
 
-void det_speed(void) {
+
+void serial_studio_sendData(void) {
     char buffer[80];
+    float rad_second = 0.0f;
+    float freq_corrected = 0.0f;
     // 获取当前速度对应的时间差
-    time_diff = App_Speed_Get();
-    if (time_diff == 0xFFFFFFFF) {
-            // 缓冲区未准备好
-        printf("Speed module not ready yet!\r\n");
-    } else if (time_diff == 0) {
-        // 理论上不应该为 0，除非在同一个 Tick 内触发了两次中断
-        printf("Time diff is 0! Too fast!\r\n");
-    } else {
-        // 計算頻率：100000 * 10µs / time_diff = Hz
-        // 例如：time_diff = 10000（= 100ms），則頻率 = 10Hz
-        float freq = 100000.0f / time_diff;               // 原始頻率 (Hz)
-        float freq_corrected = freq / ENCODER_PULSE_PER_REV;  // 实际物理频率
-        float rpm = freq_corrected * 60.0f;               // 转速 (RPM)
-        // 格式化成字符串
-        // 手动转换浮点数
-        char freq_str[16];
-        float_to_string(freq_corrected, 2, freq_str);  // 保留2位小数
-        char rpm_str[16];
-        float_to_string(rpm, 1, rpm_str);   // 保留1位小数
-        snprintf(buffer, sizeof(buffer),
-                 "dt=%" PRId32 " *10us  freq=%s Hz  RPM=%s\r\n",
-                 time_diff, freq_str, rpm_str);
-        // 发送到串口
-        printf("%s", buffer);                 
-    } 
+    rad_second = App_Tick_to_speed();
+    time_diff = App_Det_Ticks();
+    // 格式化成字符串
+    // 手动转换浮点数
+    char freq_str[16];
+    float_to_string(freq_corrected, 2, freq_str);  // 保留2位小数
+    char rpm_str[16];
+    float_to_string(rad_second, 2, rpm_str);   // 保留1位小数
+    snprintf(buffer, sizeof(buffer),
+                "%lu, %s, %s\r\n",
+                time_diff, freq_str, rpm_str);
+    // 发送到串口
+    printf("%s", buffer);                 
+     
+}
+
+void print_index(){
+    debug_index_t index;
+    index = calculate_index();
+    printf("last index:%u, value:%lu\r\n", index.last_index, index.last_tick);
+    printf("second index:%u, value:%lu\r\n", index.second_last_index, index.second_last_tick);
 }
