@@ -134,25 +134,24 @@ int main(void) {
     GPIO_Init();
     
     App_Uart2_init();         // 初始化 USART2（printf 輸出通道）
-    App_Control_Gen_Init();
+    //每秒 120 圈
+    App_Control_Gen_Init();   // init pid and sp
     /* 設定初始佔空比：PA8=50%, PB6=25% */
     App_Pwm1_SetDuty(250);
     App_Pwm4_SetDuty(0);
 
     while (1) {
-        //debug_data = App_Control_Gen_Proc(); // 调用控制处理函数
+        debug_data = App_Control_Gen_Proc(); // 调用控制处理函数
         //printf("hello world %d\r\n", pb0_voltage);
         //printf("hello world %d\r\n", duty_cycle);
         //printf("Generator count: %" PRId32 "\r\n", gen_counter);
         //HAL_UART_Transmit(&huart2, (uint8_t*)"Hello", 5, 100);
-        debug_data.speed_omega = 100.0f; // Example speed value
-        debug_data.control_output = 50.0f; // Example control output value
         // 通过串口发送 (以HAL库为例 上位機用)
         //VOFA_SendData();
         //print_index();
         serial_studio_sendData();
         HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-        HAL_Delay(500);
+        HAL_Delay(10);
     }
 }
 
@@ -165,7 +164,7 @@ int _write(int file, char *ptr, int len) {
 
 
 void serial_studio_sendData(void) {
-    char buffer[80];
+    char buffer[120];
     float rad_second = 0.0f;
     float freq_corrected = 0.0f;
     // 获取当前速度对应的时间差
@@ -177,12 +176,19 @@ void serial_studio_sendData(void) {
     float_to_string(freq_corrected, 2, freq_str);  // 保留2位小数
     char rpm_str[16];
     float_to_string(rad_second, 2, rpm_str);   // 保留1位小数
+    char kp_str[16];
+    float_to_string(debug_data.kp_output, 2, kp_str);
+    char ki_str[16];
+    float_to_string(debug_data.ki_output, 2, ki_str);
+    char kd_str[16];
+    float_to_string(debug_data.kd_output, 2, kd_str);
     snprintf(buffer, sizeof(buffer),
-                "%lu, %s, %s\r\n",
-                time_diff, freq_str, rpm_str);
+                "%lu, %s, %s, %s, %s, %s\r\n",
+                time_diff, freq_str, rpm_str,
+                kp_str, ki_str, kd_str);
     // 发送到串口
-    printf("%s", buffer);                 
-     
+    printf("%s", buffer);
+
 }
 
 void print_index(){

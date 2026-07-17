@@ -14,6 +14,7 @@ typedef struct {
     float kp_output;
     float ki_output;
     float kd_output;
+    uint16_t duty_cycle;
 } debug_control_gen_t;
 
 void App_Control_Gen_Init(void);

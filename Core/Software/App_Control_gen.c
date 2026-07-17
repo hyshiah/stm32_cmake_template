@@ -6,8 +6,8 @@ static PID_TypeDef pid_speed;
 
 void App_Control_Gen_Init(void) {
     // Initialize the PID controller with desired gains
-    PID_Init(&pid_speed, 1.0f, 0.1f, 0.01f); // Example gains, adjust as needed
-    PID_SetSP(&pid_speed, 2.0f * 3.1415f * 60.0f); // Set desired speed (SP)
+    PID_Init(&pid_speed, 1.0f, 0.0f, 0.0f); // Kp=1, Ki=0, Kd=0 → P-only 控制器
+    PID_SetSP(&pid_speed, 2.0f * 3.1415f * 120.0f); // Set desired speed (SP)
     
     
     
@@ -24,18 +24,16 @@ debug_control_gen_t App_Control_Gen_Proc(void) {
     float omega = App_Tick_to_speed(); // Replace with actual speed calculation
 
     // Compute the control output using the PID controller
-    // The PID output unit is voltage according define of transfer function. 
     float co = PID_Compute(&pid_speed, omega);
-    
-    // Apply the control output to the PWM duty cycle 0~ 999
-    if (co < 0.0f) {
-        co = 0.0f; // Ensure duty cycle is not negative
-    } else if (co > 750.0f) {
-        co = 750.0f; // Ensure duty cycle does not exceed 750
-    }
+
+    // Convert PID output (rad/s) → PWM 解析度
+    uint16_t duty_cycle = (uint16_t)PID_ErrToV(&pid_speed, co);
     debug_data.speed_omega = omega;
     debug_data.control_output = co;
-    uint16_t duty_cycle = (uint16_t) co; // Convert to uint16_t for PWM function
+    debug_data.kp_output = pid_speed.cop;
+    debug_data.ki_output = pid_speed.coi;
+    debug_data.kd_output = pid_speed.cod;
+    debug_data.duty_cycle = duty_cycle;
     App_Pwm1_SetDuty(duty_cycle); // Set PWM duty cycle for generator control
     return debug_data;
 }
