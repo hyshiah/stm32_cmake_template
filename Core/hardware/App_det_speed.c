@@ -150,11 +150,11 @@ float App_Tick_to_speed(void) {
     } else if (time_diff == 0) {
         return -2.0f;  // 理论上不应该为 0，除非在同一个 Tick 内触发了两次中断
     } else {
-        // 計算頻率：100000 * 10µs / time_diff = Hz
-        // 例如：time_diff = 10000（= 100ms），則頻率 = 10Hz
-        float ticks_rev = time_diff * ENCODER_PULSE_PER_REV; //(10us/rev)              // 原始頻率 (Hz)
-        float freq = 10000 /ticks_rev;  // 实际物理频率
-        return freq * 3.1415 * 2.0f ;  // 返回实际物理频率 (rad/sec)                        
+        // TIM2 tick = 10 µs → 100000 ticks/s
+        // freq (Hz) = 100000 / (time_diff × 26)
+        float ticks_rev = time_diff * ENCODER_PULSE_PER_REV;        // ticks per revolution
+        float freq = 100000.0f / ticks_rev;                         // rev/s (Hz)
+        return freq * 3.14159f * 2.0f;                              // rad/s                        
     } 
 }
 
