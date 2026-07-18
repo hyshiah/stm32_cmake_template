@@ -9,4 +9,7 @@ void App_Tim2_FreeCount_Init(void);
 // 讀取 TIM2 當前計數值（每 tick = 10 µs）
 uint32_t App_Tim2_GetTick(void);
 
+// 重置 TIM2 計數器為 0（可在中斷中呼叫）
+void App_Tim2_Reset(void);
+
 #endif /* __APP_TIM2_FREECOUNT_H */

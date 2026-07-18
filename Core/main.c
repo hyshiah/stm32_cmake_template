@@ -134,7 +134,7 @@ int main(void) {
     GPIO_Init();
     
     App_Uart2_init();         // 初始化 USART2（printf 輸出通道）
-    //每秒 120 圈
+    //每秒 120 圈 最大190 rev/sec SP=160rev/sec = 1000
     App_Control_Gen_Init();   // init pid and sp
     /* 設定初始佔空比：PA8=50%, PB6=25% */
     App_Pwm1_SetDuty(250);
@@ -162,20 +162,17 @@ int _write(int file, char *ptr, int len) {
     return len;
 }
 
-
+/*
+ * time_diff 電機繞一圈的時間總數
+ * speed_str 電機轉速 rad/s
+*/
 void serial_studio_sendData(void) {
-    char buffer[120];
-    float rad_second = 0.0f;
-    float freq_corrected = 0.0f;
-    // 获取当前速度对应的时间差
-    rad_second = App_Tick_to_speed();
+    char buffer[160];
     time_diff = App_Det_Ticks();
-    // 格式化成字符串
-    // 手动转换浮点数
-    char freq_str[16];
-    float_to_string(freq_corrected, 2, freq_str);  // 保留2位小数
-    char rpm_str[16];
-    float_to_string(rad_second, 2, rpm_str);   // 保留1位小数
+    char speed_str[16];
+    float_to_string(debug_data.speed_omega, 2, speed_str);
+    char co_str[16];
+    float_to_string(debug_data.control_output, 2, co_str);
     char kp_str[16];
     float_to_string(debug_data.kp_output, 2, kp_str);
     char ki_str[16];
@@ -183,17 +180,8 @@ void serial_studio_sendData(void) {
     char kd_str[16];
     float_to_string(debug_data.kd_output, 2, kd_str);
     snprintf(buffer, sizeof(buffer),
-                "%lu, %s, %s, %s, %s, %s\r\n",
-                time_diff, freq_str, rpm_str,
-                kp_str, ki_str, kd_str);
-    // 发送到串口
+             "%u, %s, %s, %s, %s, %s, %u\r\n",
+             time_diff, speed_str, co_str,
+             kp_str, ki_str, kd_str, debug_data.duty_cycle);
     printf("%s", buffer);
-
-}
-
-void print_index(){
-    debug_index_t index;
-    index = calculate_index();
-    printf("last index:%u, value:%lu\r\n", index.last_index, index.last_tick);
-    printf("second index:%u, value:%lu\r\n", index.second_last_index, index.second_last_tick);
 }

@@ -32,3 +32,12 @@ uint32_t App_Tim2_GetTick(void)
 {
     return TIM2->CNT;
 }
+
+/**
+ * @brief 重置 TIM2 計數器為 0
+ * @note  可在中斷上下文中呼叫
+ */
+void App_Tim2_Reset(void)
+{
+    TIM2->CNT = 0;
+}

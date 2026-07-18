@@ -6,8 +6,8 @@ static PID_TypeDef pid_speed;
 
 void App_Control_Gen_Init(void) {
     // Initialize the PID controller with desired gains
-    PID_Init(&pid_speed, 1.0f, 0.0f, 0.0f); // Kp=1, Ki=0, Kd=0 → P-only 控制器
-    PID_SetSP(&pid_speed, 2.0f * 3.1415f * 120.0f); // Set desired speed (SP)
+    PID_Init(&pid_speed, 1.0f, 0.01f, 0.0f); // Kp=1, Ki=0, Kd=0 → P-only 控制器
+    PID_SetSP(&pid_speed, 2.0f * 3.1415f * 160.0f); // Set desired speed (SP)
     
     
     
